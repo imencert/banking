@@ -1,0 +1,10 @@
+@import 'variables/colors';
+@import 'variables/fonts';
+
+body {
+  font: $theme-font;
+
+  h1, h2 {
+      color: $themeColor-Dark;
+  }
+}
