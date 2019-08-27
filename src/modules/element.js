@@ -1,7 +1,7 @@
 var element = (function () {
     return {
-        init: function (el, id, content, parent) {
-            const element = document.createElement(el);
+        init: function (name, id, content, parent) {
+            const element = document.createElement(name);
             if(id) {
                 element.id = id;
             }
