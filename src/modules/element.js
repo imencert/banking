@@ -1,6 +1,6 @@
-var element = (function () {
+const element = (function () {
     return {
-        init: function (name, id, content, parent) {
+        create: function (name, id, content, parent) {
             const element = document.createElement(name);
             if(id) {
                 element.id = id;

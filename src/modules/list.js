@@ -1,4 +1,4 @@
-var list = (function () {
+const list = (function () {
     return {
         init: function (container, data) {
             var ul = document.createElement('ul');

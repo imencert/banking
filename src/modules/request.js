@@ -1,6 +1,6 @@
 import {account} from './../pages/account/account';
 
-var request = (function () {
+const request = (function () {
     return {
         fetch: function (url) {
             fetch(url, {mode: 'cors'})

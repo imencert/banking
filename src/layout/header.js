@@ -1,4 +1,4 @@
-var header = (function () {
+const header = (function () {
     return {
         init: function () {
             console.log("header");

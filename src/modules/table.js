@@ -1,15 +1,23 @@
-var table = (function () {
+import {element} from './element';
+
+const table = (function () {
     return {
-        init: function (container, data) {
-            var table = document.createElement('table');
-            document.getElementById(container).appendChild(table);
+        create: function (id, headerData, data, parent) {
+            // create table
+            element.create('table', id, null, parent);
             
+            // create table header
+            element.create('tr', null, headerData, id);
+            
+            // create table rows
             data.forEach(function (object) {
-                var tr = document.createElement('tr');
-                table.appendChild(tr);
-                var td = document.createElement('td');
+                //element.create('tr', null, null, id);
+                const tr = document.createElement('tr');
+                document.getElementById(id).appendChild(tr);
+                const td = document.createElement('td');
                 tr.appendChild(td);
                 td.innerHTML += object.id;
+                
             });
         }
     };

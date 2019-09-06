@@ -1,4 +1,4 @@
-var footer = (function () {
+const footer = (function () {
     return {
         init: function () {
             console.log("footer");

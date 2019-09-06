@@ -2,7 +2,7 @@ import {request} from 'modules/request';
 import {accountDetails} from './sections/accountDetails';
 import {accountTransitions} from './sections/accountTransitions';
 
-var account = (function () {
+const account = (function () {
     return {
         init: function () {
             this.requestData();
