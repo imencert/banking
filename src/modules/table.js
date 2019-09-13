@@ -7,18 +7,22 @@ const table = (function () {
             element.create('tr', null, headerData, id);
 
             data.forEach(function (object) {
-                const tr = document.createElement('tr');
-                document.getElementById(id).appendChild(tr);
+                const row = document.createElement('tr');
+                document.getElementById(id).appendChild(row);
 
                 const properties = Object.keys(object);
-                console.log('properties', properties);
-                var x;
-                for (x in object) {
-                    const td = document.createElement('td');
-                    tr.appendChild(td);
-                    td.innerHTML += object[x];
+                var prop, date;
+                for (prop in object) {
+                    date = new Date(object['date']);
+                    object['date'] = date.toDateString();
+                    
+                    const cell = document.createElement('td');
+                    row.appendChild(cell);
+                    
+                    if (object[prop] && prop != 'id') {
+                        cell.innerHTML += object[prop];
+                    }
                 }
-
             });
         }
     };
