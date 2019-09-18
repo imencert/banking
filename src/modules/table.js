@@ -21,8 +21,12 @@ const table = (function () {
                     
                     if (object[prop] && prop != 'id') {
                         cell.innerHTML += object[prop];
-                    }
+                    }  
                 }
+                
+                /*const button = document.createElement('button');
+                button.innerHTML += "Add category";
+                row.appendChild(button);*/
             });
         }
     };
