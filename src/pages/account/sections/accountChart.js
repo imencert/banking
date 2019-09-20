@@ -4,19 +4,30 @@ const accountChart = (function () {
     return {
         init: function (data) {
             console.log('chart data', data);
-
+            
+            //filter money out
+            const result = data.filter(transition => transition.out > 0);
+            console.log('result', result);
+            
+            //filter array based on the category
+            //loop throught all the objects passing all the categories, and push the result into a new array
+            const exp = result.filter(transition => transition.category === "Housing");
+            console.log('exp', exp);
+            
+            
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(drawChart);
             
             element.create('div', 'piechart', null, 'root');
 
             function drawChart() {
-                var data = google.visualization.arrayToDataTable([
+
+                var data = google.visualization.arrayToDataTable([ //array
                   ['Task', 'Hours per Day'],
-                  ['Work', 190],
-                  ['Eat', 200],
+                  ['Food', 190],
+                  ['Clothes & Shoes', 200], // category and total of the category expenses 
                   ['Commute', 2000],
-                  ['Watch TV', 2000],
+                  ['Rent', 2000],
                   ['Sleep', 700]
                 ]);
 
