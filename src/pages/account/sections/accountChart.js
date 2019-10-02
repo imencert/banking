@@ -3,32 +3,35 @@ import {element} from 'modules/element';
 const accountChart = (function () {
     return {
         init: function (data) {
-            console.log('chart data', data);
-            
-            //filter money out
-            const result = data.filter(transition => transition.out > 0);
-            console.log('result', result);
-            
-            //filter array based on the category
-            //loop throught all the objects passing all the categories, and push the result into a new array
-            const exp = result.filter(transition => transition.category === "Housing");
-            console.log('exp', exp);
-            
-            
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(drawChart);
             
             element.create('div', 'piechart', null, 'root');
+            
+            //filter expenses
+            const expenses = data.filter(transition => transition.out > 0);
+            
+            //filter category
+            const entertainment = expenses.filter(transition => transition.category === "Entertainment");
+            const personalCare = expenses.filter(transition => transition.category === "Personal Care");
+            
+            //iterate array to convert string into number
+            const entertainmentNumber = entertainment.map(transition => parseInt(transition.out));
+            const personalCareNumber = personalCare.map(transition => parseInt(transition.out));
+            
+            //calculate total for the category
+            const entertainmentTotal = entertainmentNumber.reduce((x, y) => x + y);
+            const personalCareTotal = personalCareNumber.reduce((x, y) => x + y);
 
             function drawChart() {
-
                 var data = google.visualization.arrayToDataTable([ //array
-                  ['Task', 'Hours per Day'],
+                  ['tasks', 'Hours per Day'],
+                  ['Personal Care', personalCareTotal],       
                   ['Food', 190],
-                  ['Clothes & Shoes', 200], // category and total of the category expenses 
+                  ['Clothes & Shoes', 200], 
                   ['Commute', 2000],
                   ['Rent', 2000],
-                  ['Sleep', 700]
+                  ['Entertainment', entertainmentTotal]
                 ]);
 
                 var options = {
